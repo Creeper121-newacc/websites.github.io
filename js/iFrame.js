@@ -4,5 +4,5 @@ function changeIFrame() {
     const url = document.querySelector(".livestream-url").value;
 
     stream.src = url.replace("watch?v=", "embed/");
-    chat.src = url.replace("watch", "live_chat").append("&embed_domain=localhost");
+    chat.src = url.replace("watch", "live_chat").concat("&embed_domain=lumioze.github.io");
 }
