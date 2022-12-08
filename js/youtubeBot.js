@@ -1,17 +1,10 @@
-function youtubeBotWrapper() {
-    function getElementByXpath(path) {
-        return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-    }
-    let observer = new MutationObserver((mutations) => {
-        if($("div#input").length) {
-            if($("button[aria-label='Send']").length) {
-                onExist();
-                observer.disconnect();
-            }
-        }
-    });
-    observer.observe(document.body, {childList: true, subtree: true});
-    function onExist() {
+function getElementByXpath(path) {
+    return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
+
+
+$(document).ready(function() {
+    $('.youtube-stream').ready(function() {
         // these are required, no exclusions
         // the textbox in which u type stuff
         const textbox = getElementByXpath("//div[@id='input']");
@@ -43,5 +36,5 @@ function youtubeBotWrapper() {
                 }
             }
         });
-    }
-}
+    });
+});
