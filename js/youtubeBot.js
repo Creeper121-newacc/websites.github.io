@@ -3,7 +3,7 @@ function youtubeBotWrapper() {
         return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     }
     (function checkIfElemExists() {
-        if (getElementByXpath("//div[@id='input']") == null && getElementByXpath("//button[@aria-label='Send']") == null) {
+        if (!(getElementByXpath("//div[@id='input']") == null && getElementByXpath("//button[@aria-label='Send']")) == null) {
             console.log("couldn't find");
             window.requestAnimationFrame(checkIfElemExists);
         } else {
