@@ -4,9 +4,11 @@ function youtubeBotWrapper() {
     }
     (function checkIfElemExists() {
         if (getElementByXpath("//div[@id='input']") == null && getElementByXpath("//button[@aria-label='Send']") == null) {
-          window.requestAnimationFrame(checkIfElemExists);
+            console.log("couldn't find");
+            window.requestAnimationFrame(checkIfElemExists);
         } else {
-          onExist();
+            console.log("Found!");
+            onExist();
         }
     })();
     function onExist() {
