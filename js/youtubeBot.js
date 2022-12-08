@@ -2,16 +2,15 @@ function youtubeBotWrapper() {
     function getElementByXpath(path) {
         return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     }
-    var element = "//div[@id='input']"; 
-    var clickButton = document.evaluate (element, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; 
-    (function checkIfElemExists() { 
-        if (clickButton == null) { 
-            console.log('nope') 
-            window.requestAnimationFrame(checkIfElemExists); 
-        } else { 
-            console.log('okay i exist now! lets do something.') 
-        } 
-        })();
+    let observer = new MutationObserver((mutations) => {
+        if($("div#input").length) {
+            if($("button[aria-label='Send']").length) {
+                onExist();
+                observer.disconnect();
+            }
+        }
+    });
+    observer.observe(document.body, {childList: true, subtree: true});
     function onExist() {
         // these are required, no exclusions
         // the textbox in which u type stuff
